@@ -30,7 +30,7 @@ RSpec.describe NounProjectApi::Icon do
         @valid_response
       )
 
-      expect(@icon.find(id)).to eq(@valid_hash)
+      expect(@icon.find(id)).to eq(@valid_hash["icon"])
     end
 
     it 'raises an error with a missing id' do
@@ -62,7 +62,7 @@ RSpec.describe NounProjectApi::Icon do
         @valid_response
       )
 
-      expect(@icon.find_by_slug(slug)).to eq(@valid_hash)
+      expect(@icon.find_by_slug(slug)).to eq(@valid_hash["icon"])
     end
 
     it 'raises an error with a missing slug' do

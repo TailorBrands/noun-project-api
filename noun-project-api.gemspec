@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
-  s.version     = '0.0.1'
+  s.version     = '0.0.3'
   s.platform    = Gem::Platform::RUBY
   s.date        = '2014-11-05'
   s.summary     = "An API wrapper for The Noun Project API's"
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files   = Dir['spec/**/*']
 
   s.add_runtime_dependency 'oauth', '~> 0'
+
   s.add_development_dependency 'rake', '~> 0'
   s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
   s.add_development_dependency 'faker', '~> 0'
