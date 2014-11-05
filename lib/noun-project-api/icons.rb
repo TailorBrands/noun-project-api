@@ -1,4 +1,5 @@
 require 'noun-project-api/retriever'
+require 'open-uri'
 
 module NounProjectApi
   class Icons < Retriever
@@ -7,7 +8,7 @@ module NounProjectApi
     def find(term, limit = nil, offset = nil, page = nil)
       raise ArgumentError unless term
 
-      search = term
+      search = URI::encode(term)
 
       args = { "limit" => limit, "offset" => offset, "page" => page }.reject { |k, v| v.nil? }
       if args.size > 0
