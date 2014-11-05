@@ -53,6 +53,10 @@ Get recent Icons [source](https://api.thenounproject.com/documentation.html#get-
 result = icons_finder.recent_uploads # Returns an array of the parsed JSON results.
 ```
 
+## TODOS
+
+See [wiki](https://github.com/TailorBrands/noun-project-api/wiki/Todos)
+
 ## Disclaimer
 
 This is completely unofficial and is not related to The Noun Project in any way.
