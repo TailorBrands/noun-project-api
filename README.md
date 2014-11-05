@@ -1,4 +1,4 @@
-noun-project-api-rb
+noun-project-api
 ===================
 
 A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](https://thenounproject.com/developers/)
