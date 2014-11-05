@@ -5,10 +5,10 @@ module NounProjectApi
     API_PATH = "/icon/"
 
     def find(id)
-      raise ArgumentError unless id
+      raise ArgumentError.new('Missing id/slug') unless id
 
       result = self.access_token.get("#{API_BASE}#{API_PATH}#{id}")
-      raise ArgumentError unless result.code == '200'
+      raise ArgumentError.new('Bad request') unless result.code == '200'
 
       JSON.parse(result.body)
     end

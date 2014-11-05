@@ -6,7 +6,7 @@ module NounProjectApi
     API_PATH = "/icons/"
 
     def find(term, limit = nil, offset = nil, page = nil)
-      raise ArgumentError unless term
+      raise ArgumentError.new('Missing search term') unless term
 
       search = URI::encode(term)
 
@@ -17,7 +17,7 @@ module NounProjectApi
       end
 
       result = self.access_token.get("#{API_BASE}#{API_PATH}#{search}")
-      raise ArgumentError unless ['200', '404'].include? result.code
+      raise ArgumentError.new('Bad request') unless ['200', '404'].include? result.code
 
       if result.code == '200'
         JSON.parse(result.body)["icons"]
@@ -36,7 +36,7 @@ module NounProjectApi
       end
 
       result = self.access_token.get("#{API_BASE}#{API_PATH}recent_uploads#{search}")
-      raise ArgumentError unless result.code == '200'
+      raise ArgumentError.new('Bad request') unless result.code == '200'
 
       JSON.parse(result.body)["recent_uploads"]
     end
