@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.files        = Dir['README.rdoc', 'VERSION', 'MIT-LICENSE', 'Rakefile', 'lib/**/*']
   s.test_files   = Dir['spec/**/*']
 
-  s.add_runtime_dependency 'rest-client', '~> 0'
+  s.add_runtime_dependency 'oauth', '~> 0'
   s.add_development_dependency 'rake', '~> 0'
   s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
+  s.add_development_dependency 'faker', '~> 0'
 end

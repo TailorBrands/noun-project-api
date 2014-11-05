@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rest-client'
+gem 'oauth'
 
 gem 'faker', group: :test
 gem 'rake', group: :test
