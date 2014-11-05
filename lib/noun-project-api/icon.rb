@@ -13,13 +13,6 @@ module NounProjectApi
       JSON.parse(result.body)
     end
 
-    def find_by_slug(slug)
-      raise ArgumentError unless slug
-
-      result = self.access_token.get("#{API_BASE}#{API_PATH}#{slug}")
-      raise ArgumentError unless result.code == '200'
-
-      JSON.parse(result.body)
-    end
+    alias_method :find_by_slug, :find
   end
 end
