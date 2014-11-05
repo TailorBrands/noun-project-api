@@ -1,9 +1,30 @@
 ---
 machine:
-  ruby:
-    version: jruby-1.7.16
   java:
     version: oraclejdk7
   environment:
     RAILS_ENV: test
     JRUBY_OPTS: -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false --1.9 -J-Xmx2g
+
+dependencies:
+  cache_directories:
+    - '../.rvm/rubies'
+
+  override:
+    - >
+      case $CIRCLE_NODE_INDEX in
+       0)
+         rvm-exec 2.1.0 bash -c "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle"
+         ;;
+       1)
+         rvm-exec 2.2.0-preview1 bash -c "bundle check --path=vendor/bundle || bundle install --path=vendor/bundle"
+         ;;
+       2)
+         rvm-exec jruby gem install bundler
+         rvm-exec jruby bash -c "bundle check --path=vendor/bundle --gemfile Gemfile.java || bundle install --path=vendor/bundle --gemfile Gemfile.java"
+         ;;
+      esac
+test:
+  override:
+    - case $CIRCLE_NODE_INDEX in 0) rvm-exec 2.1.0 bundle exec rake ;; 1) rvm-exec 2.2.0-preview1 bundle exec rake ;; 2) BUNDLE_GEMFILE=Gemfile.java rvm-exec jruby bundle exec rake ;; esac:
+        parallel: true
