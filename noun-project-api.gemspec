@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path('../lib', __FILE__)
+
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
   s.version     = '0.0.1'
