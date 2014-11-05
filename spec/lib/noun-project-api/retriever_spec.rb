@@ -1,5 +1,20 @@
 require 'spec_helper'
 
 RSpec.describe NounProjectApi::Retriever do
-  it 'raises an error when initialized without token'
+  context "Bad initialization" do
+    it 'raises an error when initialized without token'
+    it 'raises an error when initialized without secret'
+  end
+
+  context "Icons" do
+    it 'raises an error when no phrase is provided'
+    it 'returns a proper result with a correct phrase'
+    it 'returns an empty result with a missing phrase'
+  end
+
+  context "Icon" do
+    it 'raises an error when no phrase is provided'
+    it 'returns a proper result with a correct phrase'
+    it 'returns an empty result with a missing phrase'
+  end
 end
