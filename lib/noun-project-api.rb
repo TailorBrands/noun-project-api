@@ -1,5 +1,5 @@
-require 'noun-project-api/icon'
-require 'noun-project-api/icons'
+require 'noun-project-api/icon_retriever'
+require 'noun-project-api/icons_retriever'
 
 module NounProjectApi
 end

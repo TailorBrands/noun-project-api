@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe NounProjectApi::Icons do
+RSpec.describe NounProjectApi::IconsRetriever do
   before :each do
-    @icons = NounProjectApi::Icons.new(Faker::Internet.password(16), Faker::Internet.password(16))
+    @icons = NounProjectApi::IconsRetriever.new(Faker::Internet.password(16), Faker::Internet.password(16))
   end
 
   context "recent uploads" do
@@ -16,7 +16,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}recent_uploads"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads"
       ).and_return(
         valid_response
       )
@@ -36,7 +36,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}recent_uploads?limit=#{limit}&"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads?limit=#{limit}&"
       ).and_return(
         valid_response
       )
@@ -61,7 +61,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
       ).and_return(
         valid_response
       )
@@ -80,7 +80,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
       ).and_return(
         valid_response
       )
@@ -100,7 +100,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}#{URI::encode(term)}?limit=#{limit}&"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit=#{limit}&"
       ).and_return(
         valid_response
       )
@@ -117,7 +117,7 @@ RSpec.describe NounProjectApi::Icons do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icons::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
       ).and_return(
         missing_response
       )

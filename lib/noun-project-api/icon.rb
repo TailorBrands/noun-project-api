@@ -1,18 +1,22 @@
-require 'noun-project-api/retriever'
-
 module NounProjectApi
-  class Icon < Retriever
-    API_PATH = "/icon/"
+  class Icon
+    PREVIEW_SIZE_200 = 200
+    PREVIEW_SIZE_42 = 42
+    PREVIEW_SIZE_84 = 84
 
-    def find(id)
-      raise ArgumentError.new('Missing id/slug') unless id
-
-      result = self.access_token.get("#{API_BASE}#{API_PATH}#{id}")
-      raise ArgumentError.new('Bad request') unless result.code == '200'
-
-      JSON.parse(result.body)["icon"]
+    def initialize
     end
 
-    alias_method :find_by_slug, :find
+    def public_domain?
+    end
+
+    def svg_url
+    end
+
+    def preview_url(size = PREVIEW_SIZE_200)
+    end
+
+    def original_hash
+    end
   end
 end

@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'ostruct'
 
-RSpec.describe NounProjectApi::Icon do
+RSpec.describe NounProjectApi::IconRetriever do
   before :each do
-    @icon = NounProjectApi::Icon.new(Faker::Internet.password(16), Faker::Internet.password(16))
+    @icon = NounProjectApi::IconRetriever.new(Faker::Internet.password(16), Faker::Internet.password(16))
     @valid_hash = JSON.parse(Fakes::Results::ICON_VALID)
     @valid_response = OpenStruct.new(
       body: Fakes::Results::ICON_VALID,
@@ -25,7 +25,7 @@ RSpec.describe NounProjectApi::Icon do
       expect(@icon.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icon::API_PATH}#{id}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconRetriever::API_PATH}#{id}"
       ).and_return(
         @valid_response
       )
@@ -38,7 +38,7 @@ RSpec.describe NounProjectApi::Icon do
       expect(@icon.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icon::API_PATH}#{id}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconRetriever::API_PATH}#{id}"
       ).and_return(
         @missing_response
       )
@@ -57,7 +57,7 @@ RSpec.describe NounProjectApi::Icon do
       expect(@icon.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icon::API_PATH}#{slug}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconRetriever::API_PATH}#{slug}"
       ).and_return(
         @valid_response
       )
@@ -70,7 +70,7 @@ RSpec.describe NounProjectApi::Icon do
       expect(@icon.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::Icon::API_PATH}#{slug}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconRetriever::API_PATH}#{slug}"
       ).and_return(
         @missing_response
       )

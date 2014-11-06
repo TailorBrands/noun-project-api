@@ -2,7 +2,7 @@ require 'noun-project-api/retriever'
 require 'open-uri'
 
 module NounProjectApi
-  class Icons < Retriever
+  class IconsRetriever < Retriever
     API_PATH = "/icons/"
 
     def find(term, limit = nil, offset = nil, page = nil)
