@@ -6,7 +6,7 @@ A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](h
 [![Circle CI](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master.png?style=badge)](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master)  [![Code Climate](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/gpa.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)  [![Test Coverage](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/coverage.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)
 
 ```rb
-gem "noun-project-api", "~> 0.0.4"
+gem "noun-project-api", "~> 0.0.5"
 ```
 
 ## Missing
@@ -19,10 +19,10 @@ You need a valid pair of token and secret to use the Gem, you can get these by s
 
 *Raises ArgumentError on bad arguments*
 
-### Single Icon
+### Find single icon
 Initialize
 ```rb
-icon_finder = NounProjectApi::Icon.new(token, secret)
+icon_finder = NounProjectApi::IconRetriever.new(token, secret)
 ```
 
 Find an Icon by id [source](https://api.thenounproject.com/documentation.html#get--icon-(int-id))
@@ -35,10 +35,10 @@ Find an Icon by slug [source](https://api.thenounproject.com/documentation.html#
 result = icon_finder.find_by_slug('globe') # Returns a hash of the parsed JSON result.
 ```
 
-### Icons
+### Search icons
 Initialize
 ```rb
-icons_finder = NounProjectApi::Icons.new(token, secret)
+icons_finder = NounProjectApi::IconsRetriever.new(token, secret)
 ```
 
 *Optional arguments for both methods are limit, offset and page*
@@ -51,6 +51,21 @@ result = icons_finder.find('cat') # Returns an array of the parsed JSON results.
 Get recent Icons [source](https://api.thenounproject.com/documentation.html#get--icons-recent_uploads)
 ```rb
 result = icons_finder.recent_uploads # Returns an array of the parsed JSON results.
+```
+
+#### Resulting objects
+The resulting object is either a NounObjectApi::Icon or an array of ones.
+
+```rb
+result.class # NounProjectApi::Icon
+result.id # 1
+result.public_domain? # true/false
+result.svg_url # url/nil
+result.preview_url # 200 size preview url
+result.preview_url(42) # 42 size preview url
+
+# You can always access the original Hash at
+result.original_hash
 ```
 
 ## TODOS
