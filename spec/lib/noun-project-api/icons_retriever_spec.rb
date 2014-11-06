@@ -21,17 +21,20 @@ RSpec.describe NounProjectApi::IconsRetriever do
         valid_response
       )
 
-      expect(@icons.recent_uploads).to eq(valid_hash["recent_uploads"])
+      results = @icons.recent_uploads
+      expect(results.size).to eq(valid_hash["recent_uploads"].size)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
     end
 
     it "returns the recent uploads and passes limit when passed" do
-      valid_hash = JSON.parse(Fakes::Results::ICONS_RECENT_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_RECENT_VALID,
         code: '200'
       )
 
-      limit = 10
+      limit = 3
 
       expect(@icons.access_token).to receive(
         :get
@@ -41,7 +44,11 @@ RSpec.describe NounProjectApi::IconsRetriever do
         valid_response
       )
 
-      expect(@icons.recent_uploads(limit)).to eq(valid_hash["recent_uploads"])
+      results = @icons.recent_uploads(limit)
+      expect(results.size).to eq(limit)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
     end
   end
 
@@ -66,7 +73,11 @@ RSpec.describe NounProjectApi::IconsRetriever do
         valid_response
       )
 
-      expect(@icons.find(term)).to eq(valid_hash["icons"])
+      results = @icons.find(term)
+      expect(results.size).to eq(valid_hash["icons"].size)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
     end
 
     it 'returns a proper result with a correct phrase' do
@@ -85,18 +96,21 @@ RSpec.describe NounProjectApi::IconsRetriever do
         valid_response
       )
 
-      expect(@icons.find(term)).to eq(valid_hash["icons"])
+      results = @icons.find(term)
+      expect(results.size).to eq(valid_hash["icons"].size)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
     end
 
     it 'returns a proper result with a correct phrase and passes along the args' do
-      valid_hash = JSON.parse(Fakes::Results::ICONS_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,
         code: '200'
       )
 
       term = 'some search'
-      limit = 10
+      limit = 4
       expect(@icons.access_token).to receive(
         :get
       ).with(
@@ -105,7 +119,11 @@ RSpec.describe NounProjectApi::IconsRetriever do
         valid_response
       )
 
-      expect(@icons.find(term, limit)).to eq(valid_hash["icons"])
+      results = @icons.find(term, limit)
+      expect(results.size).to eq(limit)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
     end
 
     it 'returns an empty array for no result' do
@@ -122,7 +140,8 @@ RSpec.describe NounProjectApi::IconsRetriever do
         missing_response
       )
 
-      expect(@icons.find(term)).to eq([])
+      results = @icons.find(term)
+      expect(results.size).to eq(0)
     end
   end
 end

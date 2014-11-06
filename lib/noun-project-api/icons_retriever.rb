@@ -20,7 +20,7 @@ module NounProjectApi
       raise ArgumentError.new('Bad request') unless ['200', '404'].include? result.code
 
       if result.code == '200'
-        JSON.parse(result.body)["icons"]
+        JSON.parse(result.body)["icons"].map { |icon| Icon.new(icon) }
       else
         []
       end
@@ -38,7 +38,7 @@ module NounProjectApi
       result = self.access_token.get("#{API_BASE}#{API_PATH}recent_uploads#{search}")
       raise ArgumentError.new('Bad request') unless result.code == '200'
 
-      JSON.parse(result.body)["recent_uploads"]
+      JSON.parse(result.body)["recent_uploads"].map { |icon| Icon.new(icon) }
     end
   end
 end

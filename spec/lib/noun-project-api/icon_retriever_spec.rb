@@ -30,7 +30,9 @@ RSpec.describe NounProjectApi::IconRetriever do
         @valid_response
       )
 
-      expect(@icon.find(id)).to eq(@valid_hash["icon"])
+      result = @icon.find(id)
+      expect(result).to be_a(NounProjectApi::Icon)
+      expect(result.original_hash).to eq(@valid_hash["icon"])
     end
 
     it 'raises an error with a missing id' do
@@ -62,7 +64,9 @@ RSpec.describe NounProjectApi::IconRetriever do
         @valid_response
       )
 
-      expect(@icon.find_by_slug(slug)).to eq(@valid_hash["icon"])
+      result = @icon.find(slug)
+      expect(result).to be_a(NounProjectApi::Icon)
+      expect(result.original_hash).to eq(@valid_hash["icon"])
     end
 
     it 'raises an error with a missing slug' do
