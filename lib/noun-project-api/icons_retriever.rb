@@ -9,11 +9,11 @@ module NounProjectApi
       raise ArgumentError.new('Missing search term') unless term
 
       search = URI::encode(term)
+      search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
 
       args = { "limit" => limit, "offset" => offset, "page" => page }.reject { |k, v| v.nil? }
       if args.size > 0
-        search += '?'
-        args.each { |k, v| search += "#{k}=#{v}&" }
+        args.each { |k, v| search += "&#{k}=#{v}" }
       end
 
       result = self.access_token.get("#{API_BASE}#{API_PATH}#{search}")

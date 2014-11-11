@@ -68,7 +68,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit_to_public_domain=0"
       ).and_return(
         valid_response
       )
@@ -91,7 +91,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit_to_public_domain=0"
       ).and_return(
         valid_response
       )
@@ -114,7 +114,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit=#{limit}&"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit_to_public_domain=0&limit=#{limit}"
       ).and_return(
         valid_response
       )
@@ -135,7 +135,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit_to_public_domain=0"
       ).and_return(
         missing_response
       )
