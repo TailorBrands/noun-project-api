@@ -34,5 +34,18 @@ module NounProjectApi
         original_hash["preview_url_#{size}"]
       end
     end
+
+    def to_hash
+      {
+        id: id,
+        preview_url_200: preview_url(PREVIEW_SIZE_200),
+        preview_url_84: preview_url(PREVIEW_SIZE_84),
+        preview_url_42: preview_url(PREVIEW_SIZE_42)
+      }
+    end
+
+    def to_json
+      JSON.dump(to_hash)
+    end
   end
 end
