@@ -103,6 +103,31 @@ RSpec.describe NounProjectApi::IconsRetriever do
       end
     end
 
+    it 'properly handles public domain only config' do
+      valid_hash = JSON.parse(Fakes::Results::ICONS_VALID)
+      valid_response = OpenStruct.new(
+        body: Fakes::Results::ICONS_VALID,
+        code: '200'
+      )
+
+      term = 'some search'
+      expect(@icons.access_token).to receive(
+        :get
+      ).with(
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{URI::encode(term)}?limit_to_public_domain=1"
+      ).and_return(
+        valid_response
+      )
+
+      NounProjectApi.configuration.public_domain = true
+      results = @icons.find(term)
+      expect(results.size).to eq(valid_hash["icons"].size)
+      results.each do |icon|
+        expect(icon).to be_a(NounProjectApi::Icon)
+      end
+      NounProjectApi.configuration.public_domain = false
+    end
+
     it 'returns a proper result with a correct phrase and passes along the args' do
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,

@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
-  s.version     = '0.0.7'
+  s.version     = '0.0.8'
   s.platform    = Gem::Platform::RUBY
   s.date        = '2014-11-05'
   s.summary     = "An API wrapper for The Noun Project API's"

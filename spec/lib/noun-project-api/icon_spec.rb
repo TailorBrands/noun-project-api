@@ -60,5 +60,18 @@ RSpec.describe NounProjectApi::IconRetriever do
       expect(@valid_icon.id).to be_a(Fixnum)
       expect(@valid_icon.id).to eq(@json["icon"]["id"].to_i)
     end
+
+    it 'builds a simple hash' do
+      expect(@valid_icon.to_hash).to eq({
+        id: @valid_icon.id,
+        preview_url_200: @valid_icon.preview_url(NounProjectApi::Icon::PREVIEW_SIZE_200),
+        preview_url_84: @valid_icon.preview_url(NounProjectApi::Icon::PREVIEW_SIZE_84),
+        preview_url_42: @valid_icon.preview_url(NounProjectApi::Icon::PREVIEW_SIZE_42)
+      })
+    end
+
+    it 'json formats the hash' do
+      expect(@valid_icon.to_json).to eq JSON.dump @valid_icon.to_hash
+    end
   end
 end
