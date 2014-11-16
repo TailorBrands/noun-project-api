@@ -19,6 +19,16 @@ You need a valid pair of token and secret to use the Gem, you can get these by s
 
 *Raises ArgumentError on bad arguments*
 
+### Configuration
+You can use an initializer for example if you're on Rails.
+```rb
+# initializers/noun_project_api.rb
+NounProjectApi.configure do |config|
+  # Will only show public domain icons when running in dev/test envs
+  config.public_domain = ['development', 'test'].include?(ENV['RAILS_ENV'])
+end
+```
+
 ### Find single icon
 Initialize
 ```rb
