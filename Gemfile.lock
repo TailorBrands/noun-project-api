@@ -39,6 +39,7 @@ GEM
     rspec-mocks (3.0.2)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.2)
+    semver (1.0.1)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -57,3 +58,4 @@ DEPENDENCIES
   rake
   rspec
   rspec_junit_formatter!
+  semver

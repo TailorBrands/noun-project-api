@@ -8,7 +8,7 @@ module NounProjectApi
     def find(term, limit = nil, offset = nil, page = nil)
       raise ArgumentError.new('Missing search term') unless term
 
-      search = URI::encode(term)
+      search = CGI.escape(term)
       search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
 
       args = { "limit" => limit, "offset" => offset, "page" => page }.reject { |k, v| v.nil? }

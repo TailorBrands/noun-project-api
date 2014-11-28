@@ -1,9 +1,11 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
 
+require 'semver'
+
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
-  s.version     = '0.0.8'
+  s.version     = SemVer.find.format '%M.%m.%p'
   s.platform    = Gem::Platform::RUBY
   s.date        = '2014-11-05'
   s.summary     = "An API wrapper for The Noun Project API's"
@@ -21,4 +23,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 0'
   s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
   s.add_development_dependency 'faker', '~> 0'
+  s.add_development_dependency 'semver', '~> 0'
 end
