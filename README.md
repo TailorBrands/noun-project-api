@@ -4,7 +4,7 @@ The Noun Project Ruby API Wrapper
 A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](https://thenounproject.com/developers/)
 
 [![Dependency Status](https://gemnasium.com/TailorBrands/noun-project-api.svg)](https://gemnasium.com/TailorBrands/noun-project-api)
-[![Circle CI](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master.png?style=badge)](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master)  [![Code Climate](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/gpa.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)  [![Test Coverage](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/coverage.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)
+[![Circle CI](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master.svg?style=svg)](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master)  [![Code Climate](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/gpa.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)  [![Test Coverage](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/coverage.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)
 
 ```rb
 gem "noun-project-api", "~> 0.0.8"
