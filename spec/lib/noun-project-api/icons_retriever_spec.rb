@@ -68,7 +68,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{CGI.escape(term)}?limit_to_public_domain=0"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper::escape(term)}?limit_to_public_domain=0"
       ).and_return(
         valid_response
       )
@@ -91,7 +91,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{CGI.escape(term)}?limit_to_public_domain=0"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper::escape(term)}?limit_to_public_domain=0"
       ).and_return(
         valid_response
       )
@@ -114,7 +114,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{CGI.escape(term)}?limit_to_public_domain=1"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper::escape(term)}?limit_to_public_domain=1"
       ).and_return(
         valid_response
       )
@@ -139,7 +139,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{CGI.escape(term)}?limit_to_public_domain=0&limit=#{limit}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper::escape(term)}?limit_to_public_domain=0&limit=#{limit}"
       ).and_return(
         valid_response
       )
@@ -160,7 +160,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{CGI.escape(term)}?limit_to_public_domain=0"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper::escape(term)}?limit_to_public_domain=0"
       ).and_return(
         missing_response
       )

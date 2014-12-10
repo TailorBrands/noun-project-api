@@ -1,5 +1,3 @@
-require "oauth"
-
 module NounProjectApi
   API_BASE = 'http://api.thenounproject.com'
 
