@@ -296,5 +296,17 @@ module Fakes
         }
     ]
 }'''
+
+    REPORTED_ONE = '''
+{
+  "licenses_consumed": 1,
+  "result": "success"
+}'''
+
+    REPORTED_THREE = '''
+{
+  "licenses_consumed": 1,
+  "result": "success"
+}'''
   end
 end
