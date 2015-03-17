@@ -9,7 +9,11 @@ module NounProjectApi
       ids = [ids] if ids.is_a?(String) || ids.is_a?(Fixnum)
       fail(ArgumentError, 'Missing ids') if ids.nil? || ids.empty?
 
-      result = access_token.post("#{API_BASE}#{API_PATH}", icons: ids.join(','))
+      result = access_token.post(
+        "#{API_BASE}#{API_PATH}",
+        { icons: ids.join(',') }.to_json,
+        { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
+      )
       result.code == '200'
     end
   end

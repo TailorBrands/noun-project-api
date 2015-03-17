@@ -37,7 +37,8 @@ RSpec.describe NounProjectApi::Reporter do
         :post
       ).with(
         "#{NounProjectApi::API_BASE}#{NounProjectApi::Reporter::API_PATH}",
-        icons: id.to_s
+        { icons: id.to_s }.to_json,
+        { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       ).and_return(
         valid_response
       )
@@ -58,7 +59,8 @@ RSpec.describe NounProjectApi::Reporter do
         :post
       ).with(
         "#{NounProjectApi::API_BASE}#{NounProjectApi::Reporter::API_PATH}",
-        icons: id
+        { icons: id }.to_json,
+        { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       ).and_return(
         valid_response
       )
@@ -81,7 +83,8 @@ RSpec.describe NounProjectApi::Reporter do
         :post
       ).with(
         "#{NounProjectApi::API_BASE}#{NounProjectApi::Reporter::API_PATH}",
-        icons: ids.join(',')
+        { icons: ids.join(',') }.to_json,
+        { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
       ).and_return(
         valid_response
       )
