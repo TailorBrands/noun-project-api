@@ -1,14 +1,16 @@
 require 'noun-project-api/retriever'
 
 module NounProjectApi
+  # Retrieve an icon.
   class IconRetriever < Retriever
-    API_PATH = "/icon/"
+    API_PATH = '/icon/'
 
+    # Find an icon based on it's id.
     def find(id)
-      raise ArgumentError.new('Missing id/slug') unless id
+      fail(ArgumentError, 'Missing id/slug') unless id
 
-      result = self.access_token.get("#{API_BASE}#{API_PATH}#{id}")
-      raise ArgumentError.new('Bad request') unless result.code == '200'
+      result = access_token.get("#{API_BASE}#{API_PATH}#{id}")
+      fail(ArgumentError, 'Bad request') unless result.code == '200'
 
       Icon.new(result.body)
     end
