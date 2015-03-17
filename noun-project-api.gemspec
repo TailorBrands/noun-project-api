@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
   s.version     = SemVer.find.format '%M.%m.%p'
   s.platform    = Gem::Platform::RUBY
-  s.date        = '2014-11-05'
+  s.date        = Date.today.to_s
   s.summary     = "An API wrapper for The Noun Project API's"
   s.description = "A Gem to expose a wrapping API for The Noun Project API's"
   s.authors     = ["Nadav Shatz"]
