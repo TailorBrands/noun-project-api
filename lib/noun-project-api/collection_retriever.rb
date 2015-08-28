@@ -1,7 +1,7 @@
 require 'noun-project-api/retriever'
 
 module NounProjectApi
-  # Retrieve an icon.
+  # Retrieve a collection.
   class CollectionRetriever < Retriever
     API_PATH = '/collection/'
 
