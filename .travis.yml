@@ -1,22 +1,17 @@
 ---
 language: ruby
 rvm:
-  - jruby-1.7.16
-  - jruby--19mode
+  - jruby-9.1.2.0
   - 1.9.3
   - rbx-2
   - ruby-head
-  - jruby-head
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
 
 os:
   - linux
-  - osx
 
 before_script:
   - "export RAILS_ENV=test"
-  - "export JRUBY_OPTS=\"-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false --1.9 -J-Xmx2g\""
+  - "export JRUBY_OPTS=\"-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false -J-Xmx2g\""
