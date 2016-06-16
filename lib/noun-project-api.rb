@@ -1,16 +1,16 @@
-require 'oauth'
-require 'json'
-require 'noun-project-api/connection'
-require 'noun-project-api/icon_retriever'
-require 'noun-project-api/reporter'
-require 'noun-project-api/icons_retriever'
-require 'noun-project-api/icon'
-require 'noun-project-api/collection_retriever'
-require 'noun-project-api/collection'
+require "oauth"
+require "json"
+require "noun-project-api/connection"
+require "noun-project-api/icon_retriever"
+require "noun-project-api/reporter"
+require "noun-project-api/icons_retriever"
+require "noun-project-api/icon"
+require "noun-project-api/collection_retriever"
+require "noun-project-api/collection"
 
 # Top level name space for the entire Gem.
 module NounProjectApi
-  API_BASE = 'http://api.thenounproject.com'
+  API_BASE = "http://api.thenounproject.com".freeze
 
   def self.configuration
     @configuration ||=  Configuration.new

@@ -4,17 +4,12 @@ rvm:
   - jruby-9.1.2.0
   - 1.9.3
   - rbx-2
-  - ruby-head
 
 jdk:
   - oraclejdk8
 
 os:
   - linux
-
-addons:
-  code_climate:
-    repo_token: de168ad543a9bbc02b733a9f7af89958ca4c63f265f7224cbce8931e79ca1bab
 
 before_script:
   - "export RAILS_ENV=test"

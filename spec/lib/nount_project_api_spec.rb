@@ -1,11 +1,11 @@
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe NounProjectApi do
-  it 'has the correct default' do
+  it "has the correct default" do
     expect(NounProjectApi.configuration.public_domain).to be false
   end
 
-  it 'sets the correct configuration' do
+  it "sets the correct configuration" do
     expect(NounProjectApi.configuration.public_domain).to be false
 
     NounProjectApi.configure do |config|

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe NounProjectApi::IconsRetriever do
   before :each do
@@ -10,7 +10,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       valid_hash = JSON.parse(Fakes::Results::ICONS_RECENT_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_RECENT_VALID,
-        code: '200'
+        code: "200"
       )
 
       expect(@icons.access_token).to receive(
@@ -31,7 +31,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
     it "returns the recent uploads and passes limit when passed" do
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_RECENT_VALID,
-        code: '200'
+        code: "200"
       )
 
       limit = 3
@@ -53,18 +53,18 @@ RSpec.describe NounProjectApi::IconsRetriever do
   end
 
   context "Icons search" do
-    it 'raises an error when no phrase is provided' do
+    it "raises an error when no phrase is provided" do
       expect { @icons.find(nil) }.to raise_error(ArgumentError)
     end
 
-    it 'properly URI encodes search patterns' do
+    it "properly URI encodes search patterns" do
       valid_hash = JSON.parse(Fakes::Results::ICONS_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,
-        code: '200'
+        code: "200"
       )
 
-      term = 'some search with \',] bad chars'
+      term = "some search with \",] bad chars"
       expect(@icons.access_token).to receive(
         :get
       ).with(
@@ -80,14 +80,14 @@ RSpec.describe NounProjectApi::IconsRetriever do
       end
     end
 
-    it 'returns a proper result with a correct phrase' do
+    it "returns a proper result with a correct phrase" do
       valid_hash = JSON.parse(Fakes::Results::ICONS_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,
-        code: '200'
+        code: "200"
       )
 
-      term = 'some search'
+      term = "some search"
       expect(@icons.access_token).to receive(
         :get
       ).with(
@@ -103,14 +103,14 @@ RSpec.describe NounProjectApi::IconsRetriever do
       end
     end
 
-    it 'properly handles public domain only config' do
+    it "properly handles public domain only config" do
       valid_hash = JSON.parse(Fakes::Results::ICONS_VALID)
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,
-        code: '200'
+        code: "200"
       )
 
-      term = 'some search'
+      term = "some search"
       expect(@icons.access_token).to receive(
         :get
       ).with(
@@ -128,13 +128,13 @@ RSpec.describe NounProjectApi::IconsRetriever do
       NounProjectApi.configuration.public_domain = false
     end
 
-    it 'returns a proper result with a correct phrase and passes along the args' do
+    it "returns a proper result with a correct phrase and passes the args" do
       valid_response = OpenStruct.new(
         body: Fakes::Results::ICONS_VALID,
-        code: '200'
+        code: "200"
       )
 
-      term = 'some search'
+      term = "some search"
       limit = 4
       expect(@icons.access_token).to receive(
         :get
@@ -151,12 +151,12 @@ RSpec.describe NounProjectApi::IconsRetriever do
       end
     end
 
-    it 'returns an empty array for no result' do
+    it "returns an empty array for no result" do
       missing_response = OpenStruct.new(
-        code: '404'
+        code: "404"
       )
 
-      term = 'missing search'
+      term = "missing search"
       expect(@icons.access_token).to receive(
         :get
       ).with(
