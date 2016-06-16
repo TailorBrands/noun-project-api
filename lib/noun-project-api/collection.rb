@@ -1,18 +1,9 @@
+require "noun-project-api/base_item"
+
 module NounProjectApi
   # A single Collection as an abstracted ruby object.
-  class Collection
-    attr_accessor :original_hash
-
-    def initialize(origin)
-      origin = JSON.parse(origin) if origin.is_a? String
-      origin = origin.delete("collection") if origin.key? "collection"
-
-      @original_hash = origin
-    end
-
-    def id
-      original_hash["id"].to_i
-    end
+  class Collection < BaseItem
+    ITEM_NAME = "collection".freeze
 
     def author_id
       original_hash["author_id"].to_i
@@ -38,10 +29,6 @@ module NounProjectApi
         icon_count: icon_count,
         is_published: is_published?
       }
-    end
-
-    def to_json
-      JSON.dump(to_hash)
     end
   end
 end
