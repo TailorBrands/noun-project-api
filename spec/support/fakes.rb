@@ -308,5 +308,86 @@ module Fakes
   "licenses_consumed": 1,
   "result": "success"
 }'''
+
+    COLLECTION_VALID = '''
+    {
+    "collection": {
+      "author": {
+        "location": "US",
+        "name": "irene hoffman",
+        "permalink": "/i",
+        "username": "i"
+      },
+      "author_id": "5562",
+      "date_created": "2014-06-27 00:22:22",
+      "date_updated": "2014-06-27 00:22:22",
+      "description": "",
+      "icon_count": "4",
+      "id": "321",
+      "is_collaborative": "",
+      "is_featured": "0",
+      "is_published": "1",
+      "is_store_item": "0",
+      "name": "genetics",
+      "permalink": "/i/collection/genetics",
+      "slug": "genetics",
+      "sponsor": {},
+      "sponsor_campaign_link": "",
+      "sponsor_id": "",
+      "tags": [
+        "genetics",
+        "chromosome",
+        "gene",
+        "heredity",
+        "genetic code",
+        "nucleic acid",
+        "RNA",
+        "DNA",
+        "deoxyribonucleic acid",
+        "reproduction",
+        "genome",
+        "human",
+        "chemistry",
+        "Allele",
+        "Amelogenin",
+        "bases",
+        "building blocks",
+        "cytosine",
+        "guanine",
+        "thymine",
+        "adenine",
+        "c",
+        "G",
+        "T",
+        "CGTA",
+        "A",
+        "biological",
+        "cell",
+        "CODIS",
+        "blueprint of life",
+        "life",
+        "material",
+        "nucleus",
+        "inherited",
+        "parent",
+        "unique",
+        "analysis",
+        "double helix",
+        "helix",
+        "forensic",
+        "loci",
+        "genotype",
+        "haplotype",
+        "junk DNA",
+        "match",
+        "nuclear",
+        "paternal",
+        "sequence",
+        "sequencing"
+      ],
+      "template": "24"
+    }
+}
+'''
   end
 end
