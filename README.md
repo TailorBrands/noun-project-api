@@ -97,10 +97,6 @@ result.preview_url(42) # 42 size preview url
 result.original_hash
 ```
 
-## TODOS
-
-See [wiki](https://github.com/TailorBrands/noun-project-api/wiki/Todos)
-
 ## Disclaimer
 
 This is completely unofficial and is not related to The Noun Project in any way.
