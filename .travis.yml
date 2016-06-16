@@ -12,6 +12,10 @@ jdk:
 os:
   - linux
 
+addons:
+  code_climate:
+    repo_token: de168ad543a9bbc02b733a9f7af89958ca4c63f265f7224cbce8931e79ca1bab
+
 before_script:
   - "export RAILS_ENV=test"
   - "export JRUBY_OPTS=\"-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false -J-Xmx2g\""

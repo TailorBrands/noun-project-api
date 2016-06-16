@@ -8,7 +8,7 @@ A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](h
 [![Circle CI](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master.svg?style=svg)](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master)  [![Code Climate](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/gpa.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)  [![Test Coverage](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/coverage.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)
 
 ```rb
-gem "noun-project-api", "~> 0.2.2"
+gem "noun-project-api", "~> 1.0.0"
 ```
 
 ## Missing
@@ -64,6 +64,23 @@ Get recent Icons [source](https://api.thenounproject.com/documentation.html#get-
 ```rb
 result = icons_finder.recent_uploads # Returns an array of the parsed JSON results.
 ```
+
+### Find a collection of icons
+Initialize
+```rb
+collection_finder = NounProjectApi::CollectionRetriever.new(token, secret)
+```
+
+Find a Collection by id [source](http://api.thenounproject.com/documentation.html#get--collection-(int-id))
+```rb
+result = collection_finder.find(1) # Returns a hash of the parsed JSON result.
+```
+
+Find a Collection by slug [source](http://api.thenounproject.com/documentation.html#get--collection-(slug))
+```rb
+result = collection_finder_finder.find_by_slug('national-park-service') # Returns a hash of the parsed JSON result.
+```
+
 
 #### Resulting objects
 The resulting object is either a NounObjectApi::Icon or an array of ones.
