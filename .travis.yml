@@ -4,7 +4,6 @@ rvm:
   - jruby-9.1.2.0
   - 1.9.3
   - rbx-2
-  - ruby-head
 
 jdk:
   - oraclejdk8
