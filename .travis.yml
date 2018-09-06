@@ -1,9 +1,8 @@
 ---
 language: ruby
 rvm:
-  - jruby-9.1.2.0
-  - 1.9.3
-  - rbx-2
+  - jruby-9.2.0.0
+  - 2.5.1
 
 jdk:
   - oraclejdk8
@@ -14,3 +13,7 @@ os:
 before_script:
   - "export RAILS_ENV=test"
   - "export JRUBY_OPTS=\"-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false -J-Xmx2g\""
+
+install:
+  - gem install semver
+  - bundle install
