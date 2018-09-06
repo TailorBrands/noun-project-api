@@ -8,10 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2016-06-16
 ### Added
+- Added `CHANGELOG.md`
 - Added `ServiceError` class to represent errors returned from Noun Project API with additional `code` and `body` attributes
 
 ### Changed
 - Changed `Retriever` class' error class from `ArgumentError` to `ServiceError` when responses http code from Noun Project API are other than `200` **BREAKING CHANGE**
+
+### Removed
+- Removed CircleCI support
+- Dropped Rubinius (rbx-2) support
+- Dropped Ruby 1.9 support
 
 ## [1.0.0] - 2016-06-16
 ### Added

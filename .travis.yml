@@ -1,9 +1,8 @@
 ---
 language: ruby
 rvm:
-  - jruby-9.1.2.0
-  - 1.9.3
-  - rbx-2
+  - jruby-9.2.0.0
+  - 2.5.1
 
 jdk:
   - oraclejdk8
