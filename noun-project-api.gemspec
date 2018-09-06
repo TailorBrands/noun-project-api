@@ -2,6 +2,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 
 require 'semver'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
