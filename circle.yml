@@ -1,9 +1,0 @@
----
-machine:
-  ruby:
-    version: 2.3.1
-  java:
-    version: oraclejdk8
-  environment:
-    RAILS_ENV: test
-    JRUBY_OPTS: -J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false -J-Xmx2g

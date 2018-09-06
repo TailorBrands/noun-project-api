@@ -2,6 +2,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 
 require 'semver'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'noun-project-api'
@@ -18,10 +19,12 @@ Gem::Specification.new do |s|
   s.files        = Dir['README.rdoc', 'VERSION', 'MIT-LICENSE', 'Rakefile', 'lib/**/*']
   s.test_files   = Dir['spec/**/*']
 
-  s.add_runtime_dependency 'oauth', '~> 0'
+  s.add_runtime_dependency 'oauth', '~> 0.5'
 
-  s.add_development_dependency 'rake', '~> 0'
-  s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
-  s.add_development_dependency 'faker', '~> 0'
-  s.add_development_dependency 'semver', '~> 0'
+  s.add_development_dependency 'rake', '~> 12.3'
+  s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'faker', '~> 1.9'
+  s.add_development_dependency 'semver', '~> 1.0'
+  s.add_development_dependency 'rspec_junit_formatter', '~> 0.4'
+  s.add_development_dependency 'pry', '~> 0.11'
 end

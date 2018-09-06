@@ -5,10 +5,10 @@ module NounProjectApi
 
     # Find an item based on it's id.
     def find(id)
-      fail(ArgumentError, "Missing id/slug") unless id
+      raise ArgumentError.new("Missing id/slug") unless id
 
       result = access_token.get("#{API_BASE}#{self.class::API_PATH}#{id}")
-      fail(ArgumentError, "Bad request") unless result.code == "200"
+      raise ServiceError.new(result.code, result.body) unless result.code == "200"
 
       self.class::ITEM_CLASS.new(result.body)
     end

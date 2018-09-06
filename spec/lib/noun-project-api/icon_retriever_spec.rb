@@ -45,7 +45,7 @@ RSpec.describe NounProjectApi::IconRetriever do
         @missing_response
       )
 
-      expect { @icon.find(id) }.to raise_error(ArgumentError)
+      expect { @icon.find(id) }.to raise_error(NounProjectApi::ServiceError)
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe NounProjectApi::IconRetriever do
         @missing_response
       )
 
-      expect { @icon.find_by_slug(slug) }.to raise_error(ArgumentError)
+      expect { @icon.find_by_slug(slug) }.to raise_error(NounProjectApi::ServiceError)
     end
   end
 end
