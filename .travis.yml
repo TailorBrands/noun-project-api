@@ -13,3 +13,5 @@ os:
 before_script:
   - "export RAILS_ENV=test"
   - "export JRUBY_OPTS=\"-J-XX:+TieredCompilation -J-XX:TieredStopAtLevel=1 -J-noverify -X-C -Xcompile.invokedynamic=false -J-Xmx2g\""
+
+install: bundle install
