@@ -7,7 +7,7 @@ module NounProjectApi
 
     def report_used(ids)
       ids = [ids] if ids.is_a?(String) || ids.is_a?(Fixnum)
-      fail(ArgumentError, "Missing ids") if ids.nil? || ids.empty?
+      raise ArgumentError.new("Missing ids") if ids.nil? || ids.empty?
 
       result = access_token.post(
         "#{API_BASE}#{API_PATH}",

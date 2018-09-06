@@ -5,7 +5,7 @@ module NounProjectApi
     ITEM_NAME = nil
 
     def initialize(origin)
-      fail(NotImplementedError, "Must use a subclass") if self.class::ITEM_NAME.nil?
+      raise NotImplementedError.new("Must use a subclass") if self.class::ITEM_NAME.nil?
 
       origin = JSON.parse(origin) if origin.is_a? String
       origin = origin.delete(
