@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0] - 2016-06-16
+## [2.0.1] - 2018-09-06
+### Changed
+- Changed `IconRetriever` class' error class from `ArgumentError` to `ServiceError` when responses http code from Noun Project API are other than `200` **BREAKING CHANGE**
+
+## [2.0.0] - 2018-09-06
 ### Added
 - Added `CHANGELOG.md`
 - Added `ServiceError` class to represent errors returned from Noun Project API with additional `code` and `body` attributes

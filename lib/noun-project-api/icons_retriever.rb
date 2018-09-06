@@ -24,7 +24,7 @@ module NounProjectApi
       args.each { |k, v| search += "&#{k}=#{v}" } if args.size > 0
 
       result = access_token.get("#{API_BASE}#{API_PATH}#{search}")
-      raise ArgumentError.new("Bad request") unless %w(200 404).include? result.code
+      raise ServiceError.new(result.code, result.body) unless %w(200 404).include? result.code
 
       if result.code == "200"
         JSON.parse(result.body)["icons"].map { |icon| Icon.new(icon) }
@@ -51,7 +51,7 @@ module NounProjectApi
       end
 
       result = access_token.get("#{API_BASE}#{API_PATH}recent_uploads#{search}")
-      raise ArgumentError.new("Bad request") unless result.code == "200"
+      raise ServiceError.new(result.code, result.body) unless result.code == "200"
 
       JSON.parse(result.body)["recent_uploads"].map { |icon| Icon.new(icon) }
     end
