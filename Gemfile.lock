@@ -2,17 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     builder (3.2.2)
-    codeclimate-test-reporter (0.5.1)
-      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     diff-lcs (1.2.5)
-    docile (1.1.5)
     faker (1.6.3)
       i18n (~> 0.5)
     ffi (1.9.10-java)
     i18n (0.7.0)
-    json (1.8.3)
-    json (1.8.3-java)
     method_source (0.8.2)
     oauth (0.5.1)
     pry (0.10.3)
@@ -42,11 +37,6 @@ GEM
       builder (< 4)
       rspec-core (>= 2, < 4, != 2.12.0)
     semver (1.0.1)
-    simplecov (0.11.2)
-      docile (~> 1.1.0)
-      json (~> 1.8)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
     slop (3.6.0)
     spoon (0.0.4)
       ffi
@@ -56,7 +46,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  codeclimate-test-reporter
   faker
   oauth
   pry
@@ -67,4 +56,4 @@ DEPENDENCIES
   spoon
 
 BUNDLED WITH
-   1.12.5
+   1.16.4

@@ -45,7 +45,7 @@ RSpec.describe NounProjectApi::CollectionRetriever do
         @missing_response
       )
 
-      expect { @collection.find(id) }.to raise_error(ArgumentError)
+      expect { @collection.find(id) }.to raise_error(NounProjectApi::ServiceError)
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe NounProjectApi::CollectionRetriever do
         @missing_response
       )
 
-      expect { @collection.find_by_slug(slug) }.to raise_error(ArgumentError)
+      expect { @collection.find_by_slug(slug) }.to raise_error(NounProjectApi::ServiceError)
     end
   end
 end
