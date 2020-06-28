@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.test_files   = Dir['spec/**/*']
 
   s.add_runtime_dependency 'oauth', '~> 0.5'
+  s.add_runtime_dependency 'activesupport'
 
   s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'rspec', '~> 3.9'

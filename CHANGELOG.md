@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-07-10
+### Changed
+- Updated to Ruby 2.7.1
+- Add cache support.
+
 ## [2.0.1] - 2018-09-06
 ### Changed
 - Changed `IconRetriever` class' error class from `ArgumentError` to `ServiceError` when responses http code from Noun Project API are other than `200` **BREAKING CHANGE**

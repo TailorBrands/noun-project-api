@@ -11,25 +11,29 @@ module NounProjectApi
     # * offset - offset the results
     # * page - page number
     def find(term, limit = nil, offset = nil, page = nil)
-      raise ArgumentError.new("Missing search term") unless term
+      cache_key = Digest::MD5.hexdigest("#{term}+#{limit}+#{offset}+#{page}")
 
-      search = OAuth::Helper.escape(term)
-      search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
+      NounProjectApi.configuration.cache.fetch(cache_key) do
+        raise ArgumentError.new("Missing search term") unless term
 
-      args = {
-        "limit" => limit,
-        "offset" => offset,
-        "page" => page
-      }.reject { |_, v| v.nil? }
-      args.each { |k, v| search += "&#{k}=#{v}" } if args.size > 0
+        search = OAuth::Helper.escape(term)
+        search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
 
-      result = access_token.get("#{API_BASE}#{API_PATH}#{search}")
-      raise ServiceError.new(result.code, result.body) unless %w(200 404).include? result.code
+        args = {
+          "limit" => limit,
+          "offset" => offset,
+          "page" => page
+        }.reject { |_, v| v.nil? }
+        args.each { |k, v| search += "&#{k}=#{v}" } if args.size > 0
 
-      if result.code == "200"
-        JSON.parse(result.body)["icons"].map { |icon| Icon.new(icon) }
-      else
-        []
+        result = access_token.get("#{API_BASE}#{API_PATH}#{search}")
+        raise ServiceError.new(result.code, result.body) unless %w(200 404).include? result.code
+
+        if result.code == "200"
+          JSON.parse(result.body)["icons"].map { |icon| Icon.new(icon) }
+        else
+          []
+        end
       end
     end
 
