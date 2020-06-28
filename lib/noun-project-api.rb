@@ -1,4 +1,5 @@
 require "oauth"
+require "active_support"
 require "json"
 require "noun-project-api/errors"
 require "noun-project-api/connection"
@@ -24,10 +25,11 @@ module NounProjectApi
 
   # Main configuration class.
   class Configuration
-    attr_accessor :public_domain
+    attr_accessor :public_domain, :cache
 
     def initialize
       @public_domain = false
+      @cache = ActiveSupport::Cache::NullStore.new
     end
   end
 end
