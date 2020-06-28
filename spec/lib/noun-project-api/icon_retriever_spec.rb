@@ -3,7 +3,7 @@ require "ostruct"
 
 RSpec.describe NounProjectApi::IconRetriever do
   before :each do
-    @icon = NounProjectApi::IconRetriever.new(Faker::Internet.password(16), Faker::Internet.password(16))
+    @icon = NounProjectApi::IconRetriever.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16))
     @valid_hash = JSON.parse(Fakes::Results::ICON_VALID)
     @valid_response = OpenStruct.new(
       body: Fakes::Results::ICON_VALID,

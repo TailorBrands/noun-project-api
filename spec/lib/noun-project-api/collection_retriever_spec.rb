@@ -3,7 +3,7 @@ require "ostruct"
 
 RSpec.describe NounProjectApi::CollectionRetriever do
   before :each do
-    @collection = NounProjectApi::CollectionRetriever.new(Faker::Internet.password(16), Faker::Internet.password(16))
+    @collection = NounProjectApi::CollectionRetriever.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16))
     @valid_hash = JSON.parse(Fakes::Results::COLLECTION_VALID)
     @valid_response = OpenStruct.new(
       body: Fakes::Results::COLLECTION_VALID,
