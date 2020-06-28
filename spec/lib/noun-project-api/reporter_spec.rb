@@ -2,16 +2,16 @@ require "spec_helper"
 
 RSpec.describe NounProjectApi::Reporter do
   it "raises an error when initialized without token" do
-    expect { NounProjectApi::Reporter.new(nil, Faker::Internet.password(16)) }.to raise_error(ArgumentError)
+    expect { NounProjectApi::Reporter.new(nil, Faker::Internet.password(min_length: 16)) }.to raise_error(ArgumentError)
   end
 
   it "raises an error when initialized without secret" do
-    expect { NounProjectApi::Reporter.new(Faker::Internet.password(16), nil) }.to raise_error(ArgumentError)
+    expect { NounProjectApi::Reporter.new(Faker::Internet.password(min_length: 16), nil) }.to raise_error(ArgumentError)
   end
 
   it "initializes the values properly" do
-    token = Faker::Internet.password(16)
-    secret = Faker::Internet.password(16)
+    token = Faker::Internet.password(min_length: 16)
+    secret = Faker::Internet.password(min_length: 16)
     reporter = NounProjectApi::Reporter.new(token, secret)
 
     expect(reporter.token).to eq(token)
@@ -20,8 +20,8 @@ RSpec.describe NounProjectApi::Reporter do
 
   context "reports ids usage" do
     before :each do
-      token = Faker::Internet.password(16)
-      secret = Faker::Internet.password(16)
+      token = Faker::Internet.password(min_length: 16)
+      secret = Faker::Internet.password(min_length: 16)
       @reporter = NounProjectApi::Reporter.new(token, secret)
     end
 

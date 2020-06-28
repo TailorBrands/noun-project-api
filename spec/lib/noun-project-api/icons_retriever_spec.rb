@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe NounProjectApi::IconsRetriever do
   before :each do
-    @icons = NounProjectApi::IconsRetriever.new(Faker::Internet.password(16), Faker::Internet.password(16))
+    @icons = NounProjectApi::IconsRetriever.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16))
   end
 
   context "recent uploads" do

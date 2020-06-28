@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'oauth', '~> 0.5'
 
-  s.add_development_dependency 'rake', '~> 12.3'
-  s.add_development_dependency 'rspec', '~> 3.8'
-  s.add_development_dependency 'faker', '~> 1.9'
+  s.add_development_dependency 'rake', '~> 13.0'
+  s.add_development_dependency 'rspec', '~> 3.9'
+  s.add_development_dependency 'faker', '~> 2.13'
   s.add_development_dependency 'semver', '~> 1.0'
   s.add_development_dependency 'rspec_junit_formatter', '~> 0.4'
-  s.add_development_dependency 'pry', '~> 0.11'
+  s.add_development_dependency 'pry', '~> 0.13'
 end
