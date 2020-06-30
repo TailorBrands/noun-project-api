@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2020-07-10
+### Changed
+- changed is_published attribute to published
+- rubcop update and fixes
+- Switch to symbol based hash access
+- dropped semver gem
+- gem updates
+
 ## [3.0.0] - 2020-07-10
 ### Changed
 - Updated to Ruby 2.7.1
