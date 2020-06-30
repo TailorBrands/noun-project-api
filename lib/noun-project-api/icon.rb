@@ -1,4 +1,6 @@
-require "noun-project-api/base_item"
+# frozen_string_literal: true
+
+require 'noun-project-api/base_item'
 
 module NounProjectApi
   # A single Icon as an abstracted ruby object.
@@ -7,23 +9,23 @@ module NounProjectApi
     PREVIEW_SIZE_42 = 42
     PREVIEW_SIZE_84 = 84
 
-    PUBLIC_DOMAIN_LICENSE = "public-domain".freeze
+    PUBLIC_DOMAIN_LICENSE = 'public-domain'
 
-    ITEM_NAME = "icon".freeze
+    ITEM_NAME = :icon
 
     def public_domain?
-      original_hash["license_description"] == PUBLIC_DOMAIN_LICENSE
+      original_hash[:license_description] == PUBLIC_DOMAIN_LICENSE
     end
 
     def svg_url
-      original_hash["icon_url"]
+      original_hash[:icon_url]
     end
 
     def preview_url(size = PREVIEW_SIZE_200)
       if size == PREVIEW_SIZE_200
-        original_hash["preview_url"]
+        original_hash[:preview_url]
       else
-        original_hash["preview_url_#{size}"]
+        original_hash[:"preview_url_#{size}"]
       end
     end
 

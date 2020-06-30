@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'bundler'
 Bundler::GemHelper.install_tasks
 
-$:.unshift 'lib'
+$LOAD_PATH.unshift 'lib'
 
 desc 'Default: run unit tests.'
-task :default => [:spec]
+task default: [:spec]
 
 require 'rspec/core/rake_task'
 

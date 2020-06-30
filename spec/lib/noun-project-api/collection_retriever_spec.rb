@@ -1,26 +1,28 @@
-require "spec_helper"
-require "ostruct"
+# frozen_string_literal: true
+
+require 'spec_helper'
+require 'ostruct'
 
 RSpec.describe NounProjectApi::CollectionRetriever do
   before :each do
     @collection = NounProjectApi::CollectionRetriever.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16))
-    @valid_hash = JSON.parse(Fakes::Results::COLLECTION_VALID)
+    @valid_hash = JSON.parse(Fakes::Results::COLLECTION_VALID, symbolize_names: true)
     @valid_response = OpenStruct.new(
       body: Fakes::Results::COLLECTION_VALID,
-      code: "200"
+      code: '200'
     )
 
     @missing_response = OpenStruct.new(
-      code: "404"
+      code: '404'
     )
   end
 
-  context "id" do
-    it "raises an error when no id is provided" do
+  context 'id' do
+    it 'raises an error when no id is provided' do
       expect { @collection.find(nil) }.to raise_error(ArgumentError)
     end
 
-    it "returns a proper result with a correct id" do
+    it 'returns a proper result with a correct id' do
       id = 1
       expect(@collection.access_token).to receive(
         :get
@@ -32,10 +34,10 @@ RSpec.describe NounProjectApi::CollectionRetriever do
 
       result = @collection.find(id)
       expect(result).to be_a(NounProjectApi::Collection)
-      expect(result.original_hash).to eq(@valid_hash["collection"])
+      expect(result.original_hash).to eq(@valid_hash[:collection])
     end
 
-    it "raises an error with a missing id" do
+    it 'raises an error with a missing id' do
       id = 1
       expect(@collection.access_token).to receive(
         :get
@@ -49,13 +51,13 @@ RSpec.describe NounProjectApi::CollectionRetriever do
     end
   end
 
-  context "slug" do
-    it "raises an error when no slug is provided" do
+  context 'slug' do
+    it 'raises an error when no slug is provided' do
       expect { @collection.find_by_slug(nil) }.to raise_error(ArgumentError)
     end
 
-    it "returns a proper result with a correct slug" do
-      slug = "existing_slug"
+    it 'returns a proper result with a correct slug' do
+      slug = 'existing_slug'
       expect(@collection.access_token).to receive(
         :get
       ).with(
@@ -66,11 +68,11 @@ RSpec.describe NounProjectApi::CollectionRetriever do
 
       result = @collection.find(slug)
       expect(result).to be_a(NounProjectApi::Collection)
-      expect(result.original_hash).to eq(@valid_hash["collection"])
+      expect(result.original_hash).to eq(@valid_hash[:collection])
     end
 
-    it "raises an error with a missing slug" do
-      slug = "missing_slug"
+    it 'raises an error with a missing slug' do
+      slug = 'missing_slug'
       expect(@collection.access_token).to receive(
         :get
       ).with(

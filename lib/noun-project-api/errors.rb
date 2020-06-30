@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NounProjectApi
   class ServiceError < StandardError
     attr_reader :status, :body
@@ -6,7 +8,7 @@ module NounProjectApi
       @status = status
       @body = body
 
-      super("Noun Project API Error")
+      super('Noun Project API Error')
     end
   end
 end
