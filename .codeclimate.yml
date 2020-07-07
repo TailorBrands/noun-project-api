@@ -1,28 +1,11 @@
----
-engines:
-  bundler-audit:
-    enabled: true
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - ruby
-      - javascript
-      - python
-      - php
-  fixme:
-    enabled: true
+version: "2"
+prepare:
+  fetch:
+    - url: "https://raw.githubusercontent.com/TailorBrands/tailor-rubocop/master/rubocop.yml"
+      path: ".rubocop-https---raw-githubusercontent-com-TailorBrands-tailor-rubocop-master-rubocop-yml"
+plugins:
   rubocop:
     enabled: true
-ratings:
-  paths:
-  - Gemfile.lock
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
-exclude_paths:
-- spec/
+    channel: rubocop-0-79
+exclude_patterns:
+  - spec/**/*

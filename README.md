@@ -3,12 +3,10 @@ The Noun Project Ruby API Wrapper
 
 A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](https://thenounproject.com/developers/)
 
-[![Gem Version](https://badge.fury.io/rb/noun-project-api.svg)](http://badge.fury.io/rb/noun-project-api)[![Dependency Status](https://gemnasium.com/TailorBrands/noun-project-api.svg)](https://gemnasium.com/TailorBrands/noun-project-api)
-[![Build Status](https://travis-ci.org/TailorBrands/noun-project-api.svg?branch=master)](https://travis-ci.org/TailorBrands/noun-project-api)
-[![Circle CI](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master.svg?style=svg)](https://circleci.com/gh/TailorBrands/noun-project-api/tree/master)  [![Code Climate](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/gpa.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)  [![Test Coverage](https://codeclimate.com/github/TailorBrands/noun-project-api/badges/coverage.svg)](https://codeclimate.com/github/TailorBrands/noun-project-api)
+[![Gem Version](https://badge.fury.io/rb/noun-project-api.svg)](https://badge.fury.io/rb/noun-project-api)
 
 ```rb
-gem "noun-project-api", "~> 2.0.0"
+gem "noun-project-api", "~> 3.1.0"
 ```
 
 ## Missing
@@ -30,6 +28,14 @@ NounProjectApi.configure do |config|
   config.public_domain = ['development', 'test'].include?(ENV['RAILS_ENV'])
 end
 ```
+
+Cache setup (needs to be an `ActiveSupport::Cache::Store`)
+```rb
+  config.cache = Rails.cache
+  config.cache_ttl = 20 # seconds
+```
+
+Defaults to Null store and 1 week TTL.
 
 ### Find single icon
 Initialize
