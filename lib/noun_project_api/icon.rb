@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'noun-project-api/base_item'
+require "noun_project_api/base_item"
 
 module NounProjectApi
   # A single Icon as an abstracted ruby object.
@@ -9,7 +9,7 @@ module NounProjectApi
     PREVIEW_SIZE_42 = 42
     PREVIEW_SIZE_84 = 84
 
-    PUBLIC_DOMAIN_LICENSE = 'public-domain'
+    PUBLIC_DOMAIN_LICENSE = "public-domain"
 
     ITEM_NAME = :icon
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'noun-project-api/retriever'
+require "noun_project_api/retriever"
 
 module NounProjectApi
   # Retrieve icons.
   class IconsRetriever < Retriever
-    API_PATH = '/icons/'
+    API_PATH = "/icons/"
 
     # Finds multiple icons based on the term
     # * term - search term
@@ -16,22 +16,22 @@ module NounProjectApi
       cache_key = Digest::MD5.hexdigest("#{term}+#{limit}+#{offset}+#{page}")
 
       NounProjectApi.configuration.cache.fetch(cache_key) do
-        raise ArgumentError, 'Missing search term' unless term
+        raise ArgumentError, "Missing search term" unless term
 
         search = OAuth::Helper.escape(term)
         search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
 
         args = {
-          'limit' => limit,
-          'offset' => offset,
-          'page' => page
+          "limit" => limit,
+          "offset" => offset,
+          "page" => page
         }.reject { |_, v| v.nil? }
         args.each { |k, v| search += "&#{k}=#{v}" } unless args.empty?
 
         result = access_token.get("#{API_BASE}#{API_PATH}#{search}")
-        raise ServiceError.new(result.code, result.body) unless %w[200 404].include? result.code
+        raise ServiceError.new(result.code, result.body) unless ["200", "404"].include? result.code
 
-        if result.code == '200'
+        if result.code == "200"
           JSON.parse(result.body, symbolize_names: true)[:icons].map { |icon| Icon.new(icon) }
         else
           []
@@ -45,19 +45,19 @@ module NounProjectApi
     # * page - page number
     def recent_uploads(limit = nil, offset = nil, page = nil)
       args = {
-        'limit' => limit,
-        'offset' => offset,
-        'page' => page
+        "limit" => limit,
+        "offset" => offset,
+        "page" => page
       }.reject { |_, v| v.nil? }
       if !args.empty?
-        search = '?'
+        search = "?"
         args.each { |k, v| search += "#{k}=#{v}&" }
       else
-        search = ''
+        search = ""
       end
 
       result = access_token.get("#{API_BASE}#{API_PATH}recent_uploads#{search}")
-      raise ServiceError.new(result.code, result.body) unless result.code == '200'
+      raise ServiceError.new(result.code, result.body) unless result.code == "200"
 
       JSON.parse(result.body, symbolize_names: true)[:recent_uploads].map { |icon| Icon.new(icon) }
     end

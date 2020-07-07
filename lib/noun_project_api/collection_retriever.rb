@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'noun-project-api/collection'
-require 'noun-project-api/retriever'
+require "noun_project_api/collection"
+require "noun_project_api/retriever"
 
 module NounProjectApi
   # Retrieve a collection.
   class CollectionRetriever < Retriever
-    API_PATH = '/collection/'
+    API_PATH = "/collection/"
     ITEM_CLASS = Collection
 
     alias find_by_slug find

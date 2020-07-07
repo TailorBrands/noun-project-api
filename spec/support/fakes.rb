@@ -2,7 +2,7 @@
 
 module Fakes
   module Results
-    ICON_VALID = '''
+    ICON_VALID = ""'
     {
     "icon": {
         "term_slug": "beauty-salon",
@@ -85,9 +85,9 @@ module Fakes
         "term_id": 645
     }
 }
-'''
+'""
 
-    ICONS_RECENT_VALID = '''
+    ICONS_RECENT_VALID = ""'
     {
     "recent_uploads": [
         {
@@ -174,9 +174,9 @@ module Fakes
         }
     ],
     "generated_at": "Thu, 18 Sep 2014 18:09:34 GMT"
-}'''
+}'""
 
-    ICONS_VALID = '''
+    ICONS_VALID = ""'
     {
     "generated_at": "Thu, 18 Sep 2014 17:48:10 GMT",
     "icons": [
@@ -297,21 +297,21 @@ module Fakes
             "term_id": 857
         }
     ]
-}'''
+}'""
 
-    REPORTED_ONE = '''
+    REPORTED_ONE = ""'
 {
   "licenses_consumed": 1,
   "result": "success"
-}'''
+}'""
 
-    REPORTED_THREE = '''
+    REPORTED_THREE = ""'
 {
   "licenses_consumed": 1,
   "result": "success"
-}'''
+}'""
 
-    COLLECTION_VALID = '''
+    COLLECTION_VALID = ""'
     {
     "collection": {
       "author": {
@@ -390,6 +390,6 @@ module Fakes
       "template": "24"
     }
 }
-'''
+'""
   end
 end

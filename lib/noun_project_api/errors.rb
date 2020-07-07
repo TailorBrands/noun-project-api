@@ -8,7 +8,7 @@ module NounProjectApi
       @status = status
       @body = body
 
-      super('Noun Project API Error')
+      super("Noun Project API Error")
     end
   end
 end

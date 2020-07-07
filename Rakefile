@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'bundler'
+require "bundler"
 Bundler::GemHelper.install_tasks
 
-$LOAD_PATH.unshift 'lib'
+$LOAD_PATH.unshift "lib"
 
-desc 'Default: run unit tests.'
+desc "Default: run unit tests."
 task default: [:spec]
 
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 
-desc 'Run specs'
+desc "Run specs"
 RSpec::Core::RakeTask.new do |t|
-  t.pattern = './spec/**/*_spec.rb'
+  t.pattern = "./spec/**/*_spec.rb"
 end
