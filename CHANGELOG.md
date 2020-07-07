@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dropped semver gem
 - Gem updates
 - Add cache TTL support.
+- Switched to Github actions
 
 ## [3.0.0] - 2020-07-10
 ### Changed
