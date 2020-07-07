@@ -27,11 +27,12 @@ module NounProjectApi
 
   # Main configuration class.
   class Configuration
-    attr_accessor :public_domain, :cache
+    attr_accessor :public_domain, :cache, :cache_ttl
 
     def initialize
       @public_domain = false
       @cache = ActiveSupport::Cache::NullStore.new
+      @cache_ttl = 604800 # Week in seconds
     end
   end
 end
