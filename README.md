@@ -6,7 +6,7 @@ A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](h
 [![Gem Version](https://badge.fury.io/rb/noun-project-api.svg)](https://badge.fury.io/rb/noun-project-api)
 
 ```rb
-gem "noun-project-api", "~> 3.1.0"
+gem "noun-project-api", "~> 3.1.0", require: "noun_project_api"
 ```
 
 ## Missing
