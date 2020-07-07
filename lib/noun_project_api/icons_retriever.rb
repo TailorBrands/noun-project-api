@@ -14,8 +14,9 @@ module NounProjectApi
     # * page - page number
     def find(term, limit = nil, offset = nil, page = nil)
       cache_key = Digest::MD5.hexdigest("#{term}+#{limit}+#{offset}+#{page}")
+      cache_ttl = NounProjectApi.configuration.cache_ttl
 
-      NounProjectApi.configuration.cache.fetch(cache_key) do
+      NounProjectApi.configuration.cache.fetch(cache_key, expires_in: cache_ttl) do
         raise ArgumentError, "Missing search term" unless term
 
         search = OAuth::Helper.escape(term)
