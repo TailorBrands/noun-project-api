@@ -7,7 +7,7 @@ module NounProjectApi
     ITEM_NAME = nil
 
     def initialize(origin)
-      raise NotImplementedError, 'Must use a subclass' if self.class::ITEM_NAME.nil?
+      raise NotImplementedError, "Must use a subclass" if self.class::ITEM_NAME.nil?
 
       origin = JSON.parse(origin, symbolize_names: true) if origin.is_a? String
       if origin.key? self.class::ITEM_NAME

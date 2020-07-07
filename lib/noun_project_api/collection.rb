@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'noun-project-api/base_item'
+require "noun_project_api/base_item"
 
 module NounProjectApi
   # A single Collection as an abstracted ruby object.

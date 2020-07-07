@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require 'oauth'
-require 'active_support'
-require 'json'
-require 'noun-project-api/errors'
-require 'noun-project-api/connection'
-require 'noun-project-api/icon_retriever'
-require 'noun-project-api/reporter'
-require 'noun-project-api/icons_retriever'
-require 'noun-project-api/icon'
-require 'noun-project-api/collection_retriever'
-require 'noun-project-api/collection'
+require "oauth"
+require "active_support"
+require "json"
+require "noun_project_api/errors"
+require "noun_project_api/connection"
+require "noun_project_api/icon_retriever"
+require "noun_project_api/reporter"
+require "noun_project_api/icons_retriever"
+require "noun_project_api/icon"
+require "noun_project_api/collection_retriever"
+require "noun_project_api/collection"
 
 # Top level name space for the entire Gem.
 module NounProjectApi
-  API_BASE = 'http://api.thenounproject.com'
+  API_BASE = "http://api.thenounproject.com"
 
   def self.configuration
     @configuration ||= Configuration.new
