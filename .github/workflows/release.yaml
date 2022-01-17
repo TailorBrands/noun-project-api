@@ -10,7 +10,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  jobs:
   build:
     name: Build + Publish
     runs-on: ubuntu-20.04
