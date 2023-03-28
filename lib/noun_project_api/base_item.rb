@@ -4,6 +4,7 @@ module NounProjectApi
   # A basis to Items returned by the noun project.
   class BaseItem
     attr_accessor :original_hash
+
     ITEM_NAME = nil
 
     def initialize(origin)

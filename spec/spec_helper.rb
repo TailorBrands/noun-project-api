@@ -2,7 +2,6 @@
 
 require "bundler/setup"
 require "noun_project_api"
-require "pry"
 require "faker"
 require "json"
 

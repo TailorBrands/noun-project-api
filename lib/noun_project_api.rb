@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "oauth"
-require "active_support"
+require "active_support/all"
 require "json"
 require "noun_project_api/errors"
 require "noun_project_api/connection"

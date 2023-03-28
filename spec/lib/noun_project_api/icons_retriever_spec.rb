@@ -18,7 +18,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads?"
       ).and_return(
         valid_response
       )
@@ -41,7 +41,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads?limit=#{limit}&"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}recent_uploads?limit=#{limit}"
       ).and_return(
         valid_response
       )
@@ -141,7 +141,7 @@ RSpec.describe NounProjectApi::IconsRetriever do
       expect(@icons.access_token).to receive(
         :get
       ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper.escape(term)}?limit_to_public_domain=0&limit=#{limit}"
+        "#{NounProjectApi::API_BASE}#{NounProjectApi::IconsRetriever::API_PATH}#{OAuth::Helper.escape(term)}?limit=#{limit}&limit_to_public_domain=0"
       ).and_return(
         valid_response
       )

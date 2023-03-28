@@ -25,10 +25,10 @@ module NounProjectApi
 
     def to_hash
       {
-        id: id,
-        author_id: author_id,
-        author_name: author_name,
-        icon_count: icon_count,
+        id:,
+        author_id:,
+        author_name:,
+        icon_count:,
         published: published?
       }
     end
