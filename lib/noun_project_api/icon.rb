@@ -31,7 +31,7 @@ module NounProjectApi
 
     def to_hash
       {
-        id: id,
+        id:,
         preview_url_200: preview_url(PREVIEW_SIZE_200),
         preview_url_84: preview_url(PREVIEW_SIZE_84),
         preview_url_42: preview_url(PREVIEW_SIZE_42)

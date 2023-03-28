@@ -19,17 +19,14 @@ module NounProjectApi
       NounProjectApi.configuration.cache.fetch(cache_key, expires_in: cache_ttl) do
         raise ArgumentError, "Missing search term" unless term
 
-        search = OAuth::Helper.escape(term)
-        search += "?limit_to_public_domain=#{NounProjectApi.configuration.public_domain ? 1 : 0}"
-
         args = {
-          "limit" => limit,
-          "offset" => offset,
-          "page" => page
-        }.reject { |_, v| v.nil? }
-        args.each { |k, v| search += "&#{k}=#{v}" } unless args.empty?
+          limit_to_public_domain: NounProjectApi.configuration.public_domain ? 1 : 0,
+          limit:,
+          offset:,
+          page:
+        }.compact
 
-        result = access_token.get("#{API_BASE}#{API_PATH}#{search}")
+        result = access_token.get("#{API_BASE}#{API_PATH}#{OAuth::Helper.escape(term)}?#{args.to_query}")
         raise ServiceError.new(result.code, result.body) unless ["200", "404"].include? result.code
 
         if result.code == "200"
@@ -46,18 +43,12 @@ module NounProjectApi
     # * page - page number
     def recent_uploads(limit = nil, offset = nil, page = nil)
       args = {
-        "limit" => limit,
-        "offset" => offset,
-        "page" => page
-      }.reject { |_, v| v.nil? }
-      if !args.empty?
-        search = "?"
-        args.each { |k, v| search += "#{k}=#{v}&" }
-      else
-        search = ""
-      end
+        limit:,
+        offset:,
+        page:
+      }.compact
 
-      result = access_token.get("#{API_BASE}#{API_PATH}recent_uploads#{search}")
+      result = access_token.get("#{API_BASE}#{API_PATH}recent_uploads?#{args.to_query}")
       raise ServiceError.new(result.code, result.body) unless result.code == "200"
 
       JSON.parse(result.body, symbolize_names: true)[:recent_uploads].map { |icon| Icon.new(icon) }
