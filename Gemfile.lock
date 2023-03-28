@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    noun-project-api (3.1.3)
+    noun-project-api (3.1.4)
       activesupport
       oauth (~> 0.5)
 
@@ -65,7 +65,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.6.1)
-    version_gem (1.1.1)
+    version_gem (1.1.2)
 
 PLATFORMS
   ruby
