@@ -1,0 +1,44 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  auto-approve-and-merge:
+    # This is a templated file true is inherited from the module
+    if: github.actor == 'dependabot[bot]' && true
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-approve dependabot PR
+        run: |
+          gh pr review ${{ github.event.pull_request.number }} --approve --body "Auto-approved: Dependabot dependency update" --repo ${{ github.repository }}
+          echo "Dependabot PR auto-approved"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
+          echo "Auto-merge enabled for dependabot PR"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  enable-on-manual-approval:
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && !true && github.event.review.state == 'approved'
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable auto-merge after manual approval
+        run: |
+          gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
+          echo "Auto-merge enabled for manually approved dependabot PR"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
