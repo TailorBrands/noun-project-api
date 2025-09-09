@@ -1,0 +1,19 @@
+name: Close Stale PRs
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+
+jobs:
+  stale:
+    name: Close Stale Pull Requests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 14
+          exempt-pr-labels: "work-in-progress,dependencies"
+          stale-pr-message: "The PR is now considered as a stale PR and will be closed within 7 days"
+          close-pr-message: "The PR is now closed"
+          delete-branch: true
