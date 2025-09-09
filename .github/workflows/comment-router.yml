@@ -1,0 +1,20 @@
+name: Comment Router
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  merge:
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/merge' }}
+    uses: TailorBrands/github-resources/.github/workflows/reusable_comment_merge.yaml@master
+    with:
+      pr_number: ${{ github.event.issue.number }}
+      comment_id: ${{ github.event.comment.id }}
+      commenter: ${{ github.event.sender.login }}
+    secrets:
+      token: ${{ secrets.CI_GITHUB_TOKEN }}
