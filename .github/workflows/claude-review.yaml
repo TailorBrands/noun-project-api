@@ -1,0 +1,13 @@
+name: Claude Config Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - ".claude/**"
+      - "CLAUDE.md"
+
+jobs:
+  review:
+    uses: TailorBrands/github-resources/.github/workflows/reusable_claude_review.yaml@master
+    secrets: inherit
