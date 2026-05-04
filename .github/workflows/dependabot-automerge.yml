@@ -20,14 +20,14 @@ jobs:
           gh pr review ${{ github.event.pull_request.number }} --approve --body "Auto-approved: Dependabot dependency update" --repo ${{ github.repository }}
           echo "Dependabot PR auto-approved"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
 
       - name: Enable auto-merge
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
           echo "Auto-merge enabled for dependabot PR"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
 
   enable-on-manual-approval:
     if: github.event.pull_request.user.login == 'dependabot[bot]' && !true && github.event.review.state == 'approved'
@@ -41,4 +41,4 @@ jobs:
           gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
           echo "Auto-merge enabled for manually approved dependabot PR"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
