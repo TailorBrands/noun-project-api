@@ -3,6 +3,11 @@ name: PR
 on:
   pull_request:
     types: ["opened", "synchronize", "reopened"]
+    paths-ignore:
+      - "README.md"
+      - "CLAUDE.md"
+      - ".gitignore"
+      - ".claude/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
