@@ -4,6 +4,11 @@ on:
   push:
     branches:
     - "master"
+    paths-ignore:
+      - "README.md"
+      - "CLAUDE.md"
+      - ".gitignore"
+      - ".claude/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
