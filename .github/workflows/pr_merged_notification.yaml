@@ -1,0 +1,14 @@
+name: PR Merged Notification
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
+jobs:
+  pr_merged_notification:
+    name: PR Merged Notification
+    if: github.event.pull_request.merged == true
+    uses: TailorBrands/github-resources/.github/workflows/reusable_pr_merged_handler.yaml@master
+    secrets: inherit
