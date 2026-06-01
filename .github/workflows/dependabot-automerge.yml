@@ -22,19 +22,27 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: Mint tailor-ci installation token
+        id: app-token
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        with:
+          app-id: ${{ secrets.TAILOR_CI_APP_ID }}
+          private-key: ${{ secrets.TAILOR_CI_APP_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Auto-approve dependabot PR
         run: |
           gh pr review ${{ github.event.pull_request.number }} --approve --body "Auto-approved: Dependabot dependency update" --repo ${{ github.repository }}
           echo "Dependabot PR auto-approved"
         env:
-          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
       - name: Enable auto-merge
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
           echo "Auto-merge enabled for dependabot PR"
         env:
-          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
   enable-on-manual-approval:
     if: github.event.pull_request.user.login == 'dependabot[bot]' && !true && github.event.review.state == 'approved'
@@ -43,9 +51,17 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: Mint tailor-ci installation token
+        id: app-token
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        with:
+          app-id: ${{ secrets.TAILOR_CI_APP_ID }}
+          private-key: ${{ secrets.TAILOR_CI_APP_KEY }}
+          owner: ${{ github.repository_owner }}
+
       - name: Enable auto-merge after manual approval
         run: |
           gh pr merge ${{ github.event.pull_request.number }} --auto --rebase --repo ${{ github.repository }}
           echo "Auto-merge enabled for manually approved dependabot PR"
         env:
-          GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
