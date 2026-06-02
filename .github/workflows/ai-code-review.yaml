@@ -21,6 +21,8 @@ permissions:
 
 jobs:
   review:
+    # Run unless it's a review_requested for someone other than tailor-machine.
+    if: ${{ !(github.event.action == 'review_requested' && github.event.requested_reviewer.login != 'tailor-machine') }}
     uses: TailorBrands/github-resources/.github/workflows/reusable_ai_code_review.yaml@master
     with:
       pr_number: ${{ github.event.pull_request.number || github.event.issue.number }}
