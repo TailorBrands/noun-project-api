@@ -9,7 +9,7 @@ name: AI Code Review
 
 on:
   pull_request:
-    types: [opened, ready_for_review, review_requested]
+    types: [opened, ready_for_review, review_requested, labeled]
   issue_comment:
     types: [created]
 
@@ -21,10 +21,13 @@ permissions:
 
 jobs:
   review:
-    # Run unless: review_requested for non-tailor-machine, or any issue_comment that isn't a member's /review command.
+    # Run unless: review_requested for non-tailor-machine; an issue_comment that isn't a member's /review command;
+    # or a `labeled` event that isn't a human adding `force-ai-review` (bot/tailor-machine labels would otherwise
+    # re-trigger and collide with the bot's own in-flight review).
     if: >-
       !(github.event.action == 'review_requested' && github.event.requested_reviewer.login != 'tailor-machine') &&
-      !(github.event_name == 'issue_comment' && !(startsWith(github.event.comment.body, '/review') && contains(fromJson('["MEMBER","COLLABORATOR","OWNER"]'), github.event.comment.author_association)))
+      !(github.event_name == 'issue_comment' && !(startsWith(github.event.comment.body, '/review') && contains(fromJson('["MEMBER","COLLABORATOR","OWNER"]'), github.event.comment.author_association))) &&
+      !(github.event.action == 'labeled' && !(github.event.label.name == 'force-ai-review' && github.event.sender.type != 'Bot' && github.actor != 'tailor-machine'))
     uses: TailorBrands/github-resources/.github/workflows/reusable_ai_code_review.yaml@master
     with:
       pr_number: ${{ github.event.pull_request.number || github.event.issue.number }}
