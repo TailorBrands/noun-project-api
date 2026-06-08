@@ -9,7 +9,7 @@ name: AI Code Review
 
 on:
   pull_request:
-    types: [opened, ready_for_review, review_requested, labeled]
+    types: [opened, ready_for_review, review_requested, labeled, closed]
   issue_comment:
     types: [created]
 
@@ -23,7 +23,9 @@ jobs:
   review:
     # Run unless: review_requested for non-tailor-machine; an issue_comment that isn't a member's /review command;
     # or a `labeled` event that isn't a human adding `force-ai-review` (bot/tailor-machine labels would otherwise
-    # re-trigger and collide with the bot's own in-flight review).
+    # re-trigger and collide with the bot's own in-flight review). The `closed` event falls through to the
+    # reusable purely to join its per-PR concurrency group and cancel an in-flight review (the reusable's job
+    # `if:` then skips — no tokens spent).
     if: >-
       !(github.event.action == 'review_requested' && github.event.requested_reviewer.login != 'tailor-machine') &&
       !(github.event_name == 'issue_comment' && !(startsWith(github.event.comment.body, '/review') && contains(fromJson('["MEMBER","COLLABORATOR","OWNER"]'), github.event.comment.author_association))) &&
