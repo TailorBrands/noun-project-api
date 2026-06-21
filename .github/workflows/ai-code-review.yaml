@@ -22,14 +22,20 @@ permissions:
 jobs:
   review:
     # Run unless: review_requested for non-tailor-machine; an issue_comment that isn't a member's /review command;
-    # or a `labeled` event that isn't a human adding `force-ai-review` (bot/tailor-machine labels would otherwise
-    # re-trigger and collide with the bot's own in-flight review). The `closed` event falls through to the
-    # reusable purely to join its per-PR concurrency group and cancel an in-flight review (the reusable's job
-    # `if:` then skips — no tokens spent).
+    # a `labeled` event that isn't a human adding `force-ai-review` (bot/tailor-machine labels would otherwise
+    # re-trigger and collide with the bot's own in-flight review); or an `opened` event where CODEOWNERS already
+    # auto-requested tailor-machine — that auto-request fires its OWN `review_requested` event which also triggers
+    # this workflow, so we suppress the `opened` run and let the single `review_requested` run handle it (de-dup).
+    # Best-effort/fail-open: if the `opened` payload's requested_reviewers hasn't yet materialized the CODEOWNERS
+    # request (a GitHub-side race), the `opened` run proceeds and we fall back to the double-run — never worse.
+    # Tradeoff: a de-duped review arrives via `review_requested`, which has no live progress comment.
+    # The `closed` event falls through to the reusable purely to join its per-PR concurrency group and cancel an
+    # in-flight review (the reusable's job `if:` then skips — no tokens spent).
     if: >-
       !(github.event.action == 'review_requested' && github.event.requested_reviewer.login != 'tailor-machine') &&
       !(github.event_name == 'issue_comment' && !(startsWith(github.event.comment.body, '/review') && contains(fromJson('["MEMBER","COLLABORATOR","OWNER"]'), github.event.comment.author_association))) &&
-      !(github.event.action == 'labeled' && !(github.event.label.name == 'force-ai-review' && github.event.sender.type != 'Bot' && github.actor != 'tailor-machine'))
+      !(github.event.action == 'labeled' && !(github.event.label.name == 'force-ai-review' && github.event.sender.type != 'Bot' && github.actor != 'tailor-machine')) &&
+      !(github.event.action == 'opened' && contains(github.event.pull_request.requested_reviewers.*.login, 'tailor-machine'))
     uses: TailorBrands/github-resources/.github/workflows/reusable_ai_code_review.yaml@master
     with:
       pr_number: ${{ github.event.pull_request.number || github.event.issue.number }}
