@@ -41,5 +41,4 @@ jobs:
     uses: TailorBrands/github-resources/.github/workflows/reusable_ai_code_review.yaml@master
     with:
       pr_number: ${{ github.event.pull_request.number || github.event.issue.number }}
-      track_progress: ${{ github.event.action != 'review_requested' && github.event_name != 'issue_comment' }}
     secrets: inherit
