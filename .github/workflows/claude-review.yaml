@@ -5,14 +5,13 @@
 # Any change made directly in this repo will be reverted on the next apply.
 # ============================================================================
 
-name: Claude Config Review
+name: CLAUDE.md Review
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - ".claude/**"
-      - "CLAUDE.md"
+      - "**/CLAUDE.md"
 
 jobs:
   review:
