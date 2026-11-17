@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.1] - 2026-11-17
+### Fixed
+- Requests fail with `OAuth::Error` (cross-origin URI not permitted) when the bundle resolves oauth 1.1.9,
+  which refuses signed requests to an origin other than the consumer's site. The OAuth consumer is now
+  configured with `site: API_BASE`; the signed requests sent are byte-identical to before.
+
 ## [5.0.0] - 2026-11-17
 No change to the public API or runtime behavior; the major bump is for the Ruby floor.
 
