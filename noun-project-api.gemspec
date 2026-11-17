@@ -6,7 +6,7 @@ require "date"
 
 Gem::Specification.new do |s|
   s.name        = "noun-project-api"
-  s.version     = "4.0.5"
+  s.version     = "4.0.6"
   s.platform    = Gem::Platform::RUBY
   s.date        = Date.today.to_s
   s.summary     = "An API wrapper for The Noun Project API's"
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.2"
 
-  s.add_runtime_dependency "activesupport"
+  s.add_runtime_dependency "activesupport", ">= 7.2", "< 9"
   s.add_runtime_dependency "oauth", "~> 1.1"
 
   s.add_development_dependency "faker", "~> 3.1"
