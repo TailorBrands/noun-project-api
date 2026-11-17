@@ -24,10 +24,3 @@ jobs:
     if: github.event.pull_request.merged == true
     uses: TailorBrands/github-resources/.github/workflows/reusable_pr_merged_handler.yaml@master
     secrets: inherit
-  ai_review_metrics:
-    name: AI Review Metrics
-    if: github.event.pull_request.merged == true
-    uses: TailorBrands/github-resources/.github/workflows/reusable_ai_review_metrics.yaml@master
-    with:
-      pr_number: ${{ github.event.pull_request.number }}
-    secrets: inherit
