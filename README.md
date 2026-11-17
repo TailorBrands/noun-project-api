@@ -6,8 +6,10 @@ A Ruby API wrapper for [The Noun Project](https://thenounproject.com/) [API's](h
 [![Gem Version](https://badge.fury.io/rb/noun-project-api.svg)](https://badge.fury.io/rb/noun-project-api)
 
 ```rb
-gem "noun-project-api", "~> 3.1.0", require: "noun_project_api"
+gem "noun-project-api", "~> 5.0", require: "noun_project_api"
 ```
+
+Requires Ruby 3.4 or newer.
 
 ## Missing
 
@@ -84,7 +86,7 @@ result = collection_finder.find(1) # Returns a hash of the parsed JSON result.
 
 Find a Collection by slug [source](http://api.thenounproject.com/documentation.html#get--collection-(slug))
 ```rb
-result = collection_finder_finder.find_by_slug('national-park-service') # Returns a hash of the parsed JSON result.
+result = collection_finder.find_by_slug('national-park-service') # Returns a hash of the parsed JSON result.
 ```
 
 
