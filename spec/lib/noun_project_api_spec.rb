@@ -23,6 +23,6 @@ RSpec.describe NounProjectApi do
   end
 
   it "exposes the gem version" do
-    expect(described_class::VERSION).to eq("5.0.0")
+    expect(described_class::VERSION).to eq("5.0.1")
   end
 end

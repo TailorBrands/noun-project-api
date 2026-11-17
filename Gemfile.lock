@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    noun-project-api (5.0.0)
+    noun-project-api (5.0.1)
       activesupport (>= 7.2, < 9)
       oauth (~> 1.1)
 

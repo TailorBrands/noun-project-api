@@ -10,7 +10,9 @@ module NounProjectApi
       @secret = secret
       raise ArgumentError, "Missing token or secret" unless @token && @secret
 
-      @access_token = OAuth::AccessToken.new(OAuth::Consumer.new(token, secret))
+      # The consumer's site must match the API origin: oauth >= 1.1.9 refuses
+      # signed requests to an absolute URL on any other origin.
+      @access_token = OAuth::AccessToken.new(OAuth::Consumer.new(token, secret, site: API_BASE))
     end
   end
 end
