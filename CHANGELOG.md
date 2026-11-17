@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 No change to the public API or runtime behavior; the major bump is for the Ruby floor.
 
 ### Changed
-- **BREAKING:** Requires Ruby >= 3.4 (was >= 3.2). Development Ruby is 3.4.11.
+- **BREAKING:** Requires Ruby >= 3.4 (was >= 3.2). Development Ruby is 3.4.12.
 - Version now lives in `NounProjectApi::VERSION` (`lib/noun_project_api/version.rb`).
 - Gemspec follows current conventions: `add_dependency`, rubygems metadata URIs, and the packaged
   files are now `lib/`, `README.md`, `CHANGELOG.md` and `LICENSE` (it listed files that did not exist).
