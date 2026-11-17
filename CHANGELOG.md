@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-11-17
+No change to the public API or runtime behavior; the major bump is for the Ruby floor.
+
+### Changed
+- **BREAKING:** Requires Ruby >= 3.4 (was >= 3.2). Development Ruby is 3.4.12.
+- Version now lives in `NounProjectApi::VERSION` (`lib/noun_project_api/version.rb`).
+- Gemspec follows current conventions: `add_dependency`, rubygems metadata URIs, and the packaged
+  files are now `lib/`, `README.md`, `CHANGELOG.md` and `LICENSE` (it listed files that did not exist).
+- Development dependencies moved to the `Gemfile` and upgraded to their latest releases
+  (rspec 3.13, rubocop 1.92 with rubocop-rspec 3.10, faker 3.8, rake 13.4), bundled with Bundler 4.1.
+- Specs modernized (`described_class`, `let`, spies, `Struct` in place of `OpenStruct`), with added
+  coverage for search caching, error responses and Marshal round-trip of cached icons.
+
+### Removed
+- Travis CI config (CI runs on GitHub Actions).
+
 ## [3.1.0] - 2020-07-10
 ### Changed
 - Changed is_published attribute to published

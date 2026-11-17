@@ -1,87 +1,60 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-require "ostruct"
-
 RSpec.describe NounProjectApi::CollectionRetriever do
-  before :each do
-    @collection = NounProjectApi::CollectionRetriever.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16))
-    @valid_hash = JSON.parse(Fakes::Results::COLLECTION_VALID, symbolize_names: true)
-    @valid_response = OpenStruct.new(
-      body: Fakes::Results::COLLECTION_VALID,
-      code: "200"
-    )
+  subject(:retriever) { described_class.new(Faker::Internet.password(min_length: 16), Faker::Internet.password(min_length: 16)) }
 
-    @missing_response = OpenStruct.new(
-      code: "404"
-    )
+  let(:valid_hash) { JSON.parse(Fakes::Results::COLLECTION_VALID, symbolize_names: true) }
+  let(:valid_response) { FakeResponse.new(body: Fakes::Results::COLLECTION_VALID, code: "200") }
+  let(:missing_response) { FakeResponse.new(code: "404") }
+
+  def url_for(id)
+    "#{NounProjectApi::API_BASE}#{described_class::API_PATH}#{id}"
   end
 
-  context "id" do
+  context "when finding by id" do
     it "raises an error when no id is provided" do
-      expect { @collection.find(nil) }.to raise_error(ArgumentError)
+      expect { retriever.find(nil) }.to raise_error(ArgumentError)
     end
 
     it "returns a proper result with a correct id" do
-      id = 1
-      expect(@collection.access_token).to receive(
-        :get
-      ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::CollectionRetriever::API_PATH}#{id}"
-      ).and_return(
-        @valid_response
-      )
+      allow(retriever.access_token).to receive(:get).and_return(valid_response)
 
-      result = @collection.find(id)
+      result = retriever.find(1)
+
+      expect(retriever.access_token).to have_received(:get).with(url_for(1))
       expect(result).to be_a(NounProjectApi::Collection)
-      expect(result.original_hash).to eq(@valid_hash[:collection])
+      expect(result.original_hash).to eq(valid_hash[:collection])
     end
 
     it "raises an error with a missing id" do
-      id = 1
-      expect(@collection.access_token).to receive(
-        :get
-      ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::CollectionRetriever::API_PATH}#{id}"
-      ).and_return(
-        @missing_response
-      )
+      allow(retriever.access_token).to receive(:get).with(url_for(1)).and_return(missing_response)
 
-      expect { @collection.find(id) }.to raise_error(NounProjectApi::ServiceError)
+      expect { retriever.find(1) }.to raise_error(NounProjectApi::ServiceError) { |error|
+        expect(error.status).to eq("404")
+        expect(error.message).to eq("Noun Project API Error")
+      }
     end
   end
 
-  context "slug" do
+  context "when finding by slug" do
     it "raises an error when no slug is provided" do
-      expect { @collection.find_by_slug(nil) }.to raise_error(ArgumentError)
+      expect { retriever.find_by_slug(nil) }.to raise_error(ArgumentError)
     end
 
     it "returns a proper result with a correct slug" do
-      slug = "existing_slug"
-      expect(@collection.access_token).to receive(
-        :get
-      ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::CollectionRetriever::API_PATH}#{slug}"
-      ).and_return(
-        @valid_response
-      )
+      allow(retriever.access_token).to receive(:get).and_return(valid_response)
 
-      result = @collection.find(slug)
+      result = retriever.find_by_slug("existing_slug")
+
+      expect(retriever.access_token).to have_received(:get).with(url_for("existing_slug"))
       expect(result).to be_a(NounProjectApi::Collection)
-      expect(result.original_hash).to eq(@valid_hash[:collection])
+      expect(result.original_hash).to eq(valid_hash[:collection])
     end
 
     it "raises an error with a missing slug" do
-      slug = "missing_slug"
-      expect(@collection.access_token).to receive(
-        :get
-      ).with(
-        "#{NounProjectApi::API_BASE}#{NounProjectApi::CollectionRetriever::API_PATH}#{slug}"
-      ).and_return(
-        @missing_response
-      )
+      allow(retriever.access_token).to receive(:get).with(url_for("missing_slug")).and_return(missing_response)
 
-      expect { @collection.find_by_slug(slug) }.to raise_error(NounProjectApi::ServiceError)
+      expect { retriever.find_by_slug("missing_slug") }.to raise_error(NounProjectApi::ServiceError)
     end
   end
 end

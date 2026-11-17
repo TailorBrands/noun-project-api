@@ -7,7 +7,7 @@ module NounProjectApi
 
     API_PATH = "/notify/publish"
 
-    def report_used(ids)
+    def report_used(ids) # rubocop:disable Naming/PredicateMethod -- public API, renaming would break callers
       ids = [ids] if ids.is_a?(String) || ids.is_a?(Integer)
       raise ArgumentError, "Missing ids" if ids.nil? || ids.empty?
 

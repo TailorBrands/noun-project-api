@@ -2,7 +2,9 @@
 
 require "oauth"
 require "active_support/all"
+require "digest"
 require "json"
+require "noun_project_api/version"
 require "noun_project_api/errors"
 require "noun_project_api/connection"
 require "noun_project_api/icon_retriever"
@@ -21,7 +23,6 @@ module NounProjectApi
   end
 
   def self.configure
-    self.configuration ||= Configuration.new
     yield(configuration) if block_given?
   end
 
